@@ -24,7 +24,7 @@ typedef struct n {
 	struct n* lchild;
 	struct n* rchild;
 } Node;
-
+//创建根节点
 void create(Node** root)
 {
 	int key;
@@ -44,7 +44,7 @@ void create(Node** root)
 		create(&((*root) -> rchild));
 	}
 }
-
+//先序遍历
 void preOrder(Node *root)
 {
 	if(root != NULL)
@@ -54,7 +54,7 @@ void preOrder(Node *root)
 		preOrder(root -> rchild);
 	}
 }
-
+//中序遍历
 void inOrder(Node *root)
 {
 	if(root != NULL)
@@ -64,7 +64,7 @@ void inOrder(Node *root)
 		inOrder(root -> rchild);
 	}
 }
-
+//后序遍历
 void postOreder(Node *root)
 {
 	if(root != NULL)
