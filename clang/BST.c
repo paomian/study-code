@@ -12,7 +12,7 @@
  *
  *         Author:  ipaomian (ipm), xpaomian@gmail.com
  *   Organization:  FH Südwestfalen, Iserlohn
- *
+ *       测试数据:  7 8 6 11 -1    
  * =====================================================================================
  */
 #include    <stdio.h>
@@ -95,7 +95,6 @@ void searchValue(Node *root, int x) {
 
 //删除函数
 Node* delete(Node **root, int x) {
-	printf("%d:",*root);
 	if((*root) == NULL) return NULL;
 	else if((*root) -> key > x) (*root) -> lchild = delete(&((*root) -> lchild), x);
 	else if((*root) -> key < x) (*root) -> rchild = delete(&((*root) -> rchild), x);
@@ -116,15 +115,14 @@ Node* delete(Node **root, int x) {
 	else {
 	    printf("third\n");
 		Node *b;
-		for (b = (*root)->lchild ; b->rchild != NULL ; b = b->rchild);
+		for (b = (*root)->lchild ; b->rchild->rchild != NULL ; b = b->rchild);
 		Node* r = b -> rchild;
-		b -> rchild = r -> rchild;
+		b -> rchild = r -> lchild;
 		r -> lchild = (*root) -> lchild;
 		r -> rchild = (*root) -> rchild;
 		free((*root));
 		return r;
 	}
-	printf("%d",*root);
 	return (*root);
 }
 //中序遍历
@@ -147,7 +145,7 @@ int main()
 		tree = root;
 		insert(&tree,key);
 	}
-	Node *tmp = delete(&root,1);
+	Node *tmp = delete(&root,10);
 	printf("The BST is:");
 	inOrder(tmp);
 	printf("\n");
